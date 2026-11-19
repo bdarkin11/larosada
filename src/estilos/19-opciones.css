@@ -1,0 +1,99 @@
+/* Confirmación propia */
+
+.capa.confirmacion {
+  z-index: 60;
+  align-items: center;
+}
+
+.caja-confirmacion {
+  width: 100%;
+  max-width: 380px;
+  background: var(--panel);
+  border: 1px solid var(--borde);
+  border-top: 3px solid var(--celeste);
+  border-radius: 10px;
+  padding: 18px;
+  box-shadow: 0 20px 60px #000a;
+  animation: entrar 0.18s ease-out;
+}
+
+.caja-confirmacion p {
+  margin: 0 0 16px;
+  font-size: 1rem;
+}
+
+.botones-confirmacion {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.boton.peligro-lleno {
+  background: var(--rojo);
+  border-color: var(--rojo);
+  color: #fff;
+}
+
+/* Pros y contras de cada opción */
+
+.pros-contras {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.fila-pc {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+}
+
+.fila-pc em {
+  font-style: normal;
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  min-width: 68px;
+}
+
+.fila-pc.pros em { color: var(--verde); }
+.fila-pc.contras em { color: var(--rojo); }
+
+.fila-pc .nada {
+  font-size: 0.75rem;
+  color: var(--suave);
+}
+
+.escenario {
+  margin-top: 6px;
+  font-size: 0.75rem;
+  font-weight: 800;
+}
+
+.escenario.bien { color: var(--verde); }
+.escenario.mal { color: var(--rojo); }
+
+.nota-limpias {
+  font-size: 0.75rem;
+  color: #fff;
+}
+
+.opcion .pros-contras .chip {
+  font-size: 0.72rem;
+  padding: 2px 6px;
+}
+
+.tienda.sin-entrada {
+  animation: none;
+}
+
+/* La parte de la caja que representa una plata, dentro del chip */
+.chip small {
+  margin-left: 4px;
+  font-size: 0.68rem;
+  font-weight: 600;
+  opacity: 0.85;
+}

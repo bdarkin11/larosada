@@ -1,0 +1,315 @@
+/* Eventos especiales: la alerta */
+
+.capa-alerta {
+  z-index: 30;
+  padding: 0;
+  background: transparent;
+  align-items: stretch;
+  overflow: hidden auto;
+}
+
+.alerta-evento {
+  --tono: var(--sol);
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+  background: #03070dee;
+}
+
+.alerta-evento.tipo-oferta { --tono: var(--sol); }
+.alerta-evento.tipo-propuesta { --tono: var(--celeste); }
+.alerta-evento.tipo-amenaza { --tono: var(--rojo); }
+.alerta-evento.tipo-carpetazo { --tono: #a06cf0; }
+.alerta-evento.tipo-pedido { --tono: var(--verde); }
+.alerta-evento.tipo-citacion { --tono: #c9d3df; }
+.alerta-evento.tipo-desafuero { --tono: #ff7a2f; }
+
+.lineas-velocidad {
+  position: absolute;
+  inset: 0;
+  background: repeating-conic-gradient(from 0deg at 50% 50%, transparent 0deg 7deg, color-mix(in srgb, var(--tono) 18%, transparent) 7deg 9deg);
+  opacity: 0;
+  animation: lineas 1.5s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes lineas {
+  0% { opacity: 0; transform: scale(1.4); }
+  15% { opacity: 1; }
+  100% { opacity: 0.25; transform: scale(1); }
+}
+
+.destello {
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  opacity: 0;
+  animation: destello 0.5s ease-out;
+  pointer-events: none;
+}
+
+@keyframes destello {
+  0% { opacity: 0.9; }
+  100% { opacity: 0; }
+}
+
+.cartel-alerta {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 2;
+  transform: translate(-50%, -50%) rotate(-8deg);
+  padding: 10px 28px;
+  background: var(--tono);
+  box-shadow: 0 0 0 6px #0b0b0b, 0 0 0 10px var(--tono), 0 20px 60px #000c;
+  animation: cartel 0.55s cubic-bezier(0.2, 1.7, 0.4, 1) both;
+  transform-origin: center top;
+}
+
+.cartel-alerta span {
+  display: block;
+  font-family: Impact, 'Arial Black', Georgia, sans-serif;
+  font-weight: 900;
+  font-style: italic;
+  font-size: clamp(2.6rem, 13vw, 5.5rem);
+  letter-spacing: 0.03em;
+  color: #fff;
+  -webkit-text-stroke: 3px #0b0b0b;
+  paint-order: stroke fill;
+  text-shadow: 6px 6px 0 #0b0b0b;
+  white-space: nowrap;
+}
+
+@keyframes cartel {
+  0% { opacity: 0; transform: translate(-50%, -50%) rotate(-8deg) scale(3.5); }
+  60% { opacity: 1; transform: translate(-50%, -50%) rotate(-8deg) scale(0.92); }
+  100% { opacity: 1; transform: translate(-50%, -50%) rotate(-8deg) scale(1); }
+}
+
+.alerta-evento.hablando .cartel-alerta {
+  animation: achicar-cartel 0.45s ease forwards;
+}
+
+@keyframes achicar-cartel {
+  from { top: 50%; transform: translate(-50%, -50%) rotate(-8deg) scale(1); }
+  to { top: 10px; transform: translate(-50%, 0) rotate(-4deg) scale(0.42); }
+}
+
+.carrera.temblor {
+  animation: temblor 0.45s linear 2;
+}
+
+@keyframes temblor {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-8px, 4px); }
+  40% { transform: translate(7px, -5px); }
+  60% { transform: translate(-6px, -3px); }
+  80% { transform: translate(5px, 5px); }
+}
+
+.escena-evento {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 640px;
+  margin-top: 70px;
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.lado-retrato {
+  animation: entrar-retrato 0.45s cubic-bezier(0.2, 1.2, 0.4, 1) both;
+}
+
+@keyframes entrar-retrato {
+  from { opacity: 0; transform: translateX(-140%); }
+  to { opacity: 1; transform: none; }
+}
+
+.quien-evento {
+  position: relative;
+}
+
+.retrato {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.retrato-evento {
+  border: 3px solid var(--tono, var(--celeste));
+  border-radius: 12px;
+  box-shadow: 0 10px 30px #0009;
+}
+
+.placa {
+  margin-top: -14px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding: 6px 10px;
+  background: #0b0b0b;
+  border: 2px solid var(--tono, var(--celeste));
+  border-radius: 6px;
+  text-align: center;
+}
+
+.placa strong {
+  font-size: 0.9rem;
+}
+
+.placa span {
+  font-size: 0.7rem;
+  color: var(--suave);
+}
+
+.globo {
+  position: relative;
+  background: #f5f1e6;
+  color: #1a1a1a;
+  border-radius: 14px;
+  padding: 14px 16px 22px;
+  min-height: 120px;
+  box-shadow: 0 10px 30px #0009;
+  cursor: pointer;
+  animation: entrar 0.3s ease-out both;
+}
+
+.globo::before {
+  content: "";
+  position: absolute;
+  left: -14px;
+  top: 30px;
+  border: 8px solid transparent;
+  border-right: 8px solid #f5f1e6;
+  border-width: 9px 14px 9px 0;
+}
+
+.titulo-globo {
+  margin: 0 0 6px;
+  font-family: Georgia, serif;
+  font-weight: 700;
+  color: #6b4a14;
+}
+
+.tipeo {
+  margin: 0;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.seguir-tipeo {
+  position: absolute;
+  right: 12px;
+  bottom: 4px;
+  font-size: 0.8rem;
+  color: #6b4a14;
+  animation: titilar 0.8s steps(2, start) infinite;
+}
+
+.opciones-evento {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.opcion-alerta {
+  border-left: 4px solid var(--tono);
+  animation: entrar 0.35s ease-out both;
+}
+
+.opcion-alerta:hover:not(:disabled) {
+  border-color: var(--tono);
+}
+
+.pista {
+  font-style: italic;
+}
+
+.desenlace {
+  grid-column: 1 / -1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 16px;
+  background: var(--panel);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  animation: entrar 0.35s ease-out both;
+}
+
+.desenlace.bueno { border-color: var(--verde); }
+.desenlace.malo { border-color: var(--rojo); }
+
+.desenlace .sobretitulo {
+  margin: 0;
+}
+
+.desenlace.bueno .sobretitulo { color: var(--verde); }
+.desenlace.malo .sobretitulo { color: var(--rojo); }
+
+.texto-desenlace {
+  margin: 0;
+  font-family: Georgia, serif;
+  font-size: 1.1rem;
+}
+
+.favor-anotado {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--sol);
+}
+
+/* Eventos comunes */
+
+.evento-comun {
+  border-color: var(--celeste);
+}
+
+.evento-cuerpo {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 14px;
+  align-items: start;
+  margin-bottom: 12px;
+}
+
+.evento-cuerpo:has(> div:only-child) {
+  grid-template-columns: 1fr;
+}
+
+.evento-cuerpo .quien-evento {
+  width: 96px;
+}
+
+.evento-cuerpo .placa strong {
+  font-size: 0.72rem;
+}
+
+.evento-cuerpo .placa span {
+  display: none;
+}
+
+.texto-evento {
+  margin: 0;
+  color: var(--suave);
+}
+
+.azar-opcion {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--sol);
+}
+
+.evento-espera {
+  min-height: 80px;
+}

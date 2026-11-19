@@ -1,0 +1,108 @@
+/* La bitácora: abajo, apagada, para no distraer */
+
+.bitacora {
+  background: #0b1118;
+  border-color: #18222f;
+  box-shadow: none;
+  opacity: 0.92;
+}
+
+.bitacora h3 {
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #6f8299;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bitacora-sobre {
+  font-size: 0.62rem;
+  font-weight: 800;
+  padding: 1px 6px;
+  border: 1px solid #2a3a4f;
+  border-radius: 4px;
+  color: #546579;
+}
+
+.bitacora .historial {
+  gap: 8px;
+}
+
+.bitacora .anio-historial {
+  padding-left: 10px;
+  border-left: 2px solid #1e2b3a;
+}
+
+.bitacora .anio-historial h4 {
+  font-size: 0.78rem;
+  color: #b8954a;
+}
+
+.bitacora .anio-historial p {
+  font-size: 0.76rem;
+  line-height: 1.4;
+  color: #7f91a6;
+}
+
+@media (max-width: 760px) {
+  .poder,
+  .poder.n2,
+  .poder.n3,
+  .poder.n4 {
+    width: 74px;
+    height: 74px;
+  }
+  .poder strong { font-size: 2.3rem; }
+  .lugar .escarapela { width: 34px; height: 34px; }
+  .estadistica .valor { font-size: 1.45rem; }
+  .boton-barra .icono { font-size: 0.9rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .franja-grito { animation: none; }
+}
+
+/* Los botones, en columnas parejas que bajan a otra fila si no entran. */
+.botonera {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(128px, 1fr));
+  gap: 8px;
+}
+
+.botonera .boton-barra {
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.inicio h1 {
+  font-family: var(--titulo);
+  font-weight: 400;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 560px) {
+  .fila-estadisticas.atributos {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .fila-estadisticas.medidores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .estadistica.plata .valor {
+    font-size: 1.15rem;
+  }
+  .lugar .escarapela {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .estadistica .etiqueta {
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+  }
+}

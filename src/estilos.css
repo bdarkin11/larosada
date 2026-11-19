@@ -1,0 +1,33 @@
+/*
+ * Los estilos están partidos en src/estilos/, en el mismo orden en que
+ * estaban (el orden importa: los de más abajo pisan a los de arriba).
+ * Vite los junta en uno solo al compilar.
+ */
+@import './estilos/01-base.css';
+@import './estilos/02-inicio.css';
+@import './estilos/03-carrera.css';
+@import './estilos/04-historial-detencion.css';
+@import './estilos/05-armado-personaje.css';
+@import './estilos/06-celular.css';
+@import './estilos/07-tablero.css';
+@import './estilos/08-tienda.css';
+@import './estilos/09-entrevista.css';
+@import './estilos/09-rosca.css';
+@import './estilos/10-movimiento-reducido.css';
+@import './estilos/11-tablero-partido.css';
+@import './estilos/12-tienda-ampliada.css';
+@import './estilos/13-pases.css';
+@import './estilos/14-festejos.css';
+@import './estilos/15-elecciones.css';
+@import './estilos/16-noche-electoral.css';
+@import './estilos/17-eventos.css';
+@import './estilos/18-poder-justicia.css';
+@import './estilos/19-opciones.css';
+@import './estilos/20-pantalla-presidencia.css';
+@import './estilos/21-piel-fondo.css';
+@import './estilos/22-piel-cabecera.css';
+@import './estilos/23-piel-botones.css';
+@import './estilos/24-tarjetas-armado.css';
+@import './estilos/25-bitacora-botones.css';
+@import './estilos/26-mejoras.css';
+@import './estilos/27-legado.css';

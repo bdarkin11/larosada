@@ -1,0 +1,92 @@
+/* Historial */
+
+.historial {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.anio-historial h4 {
+  margin: 0 0 4px;
+  color: var(--sol);
+  font-size: 0.9rem;
+}
+
+.anio-historial h4 span {
+  color: var(--suave);
+  font-weight: 400;
+}
+
+.anio-historial p,
+.vacio {
+  margin: 2px 0;
+  font-size: 0.85rem;
+  color: var(--suave);
+}
+
+.acciones-carrera {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.salidas {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Orden de detención */
+
+.panel.detencion {
+  border-color: var(--peligro);
+  box-shadow: 0 0 0 1px #d9534f55, 0 0 24px #d9534f22;
+}
+
+.alerta {
+  display: inline-block;
+  margin: 0 0 8px;
+  padding: 3px 10px;
+  border-radius: 4px;
+  background: var(--peligro);
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.salidas-detencion {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.opcion {
+  font: inherit;
+  color: var(--texto);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  background: #0f1a28;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.opcion:hover:not(:disabled) {
+  border-color: var(--celeste);
+}
+
+.opcion span {
+  color: var(--suave);
+  font-size: 0.85rem;
+}
+
+.opcion:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}

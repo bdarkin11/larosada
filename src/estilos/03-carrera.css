@@ -1,0 +1,179 @@
+/* Carrera */
+
+.ficha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid var(--borde);
+}
+
+.ficha h2 {
+  font-size: 1.6rem;
+}
+
+.ficha p {
+  margin: 2px 0 0;
+  color: var(--suave);
+}
+
+.fecha {
+  text-align: right;
+  color: var(--suave);
+  display: flex;
+  flex-direction: column;
+}
+
+.fecha .anio {
+  font-family: Georgia, serif;
+  font-size: 1.8rem;
+  color: var(--sol);
+  line-height: 1;
+}
+
+.tablero {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 16px;
+  align-items: start;
+}
+
+.columna {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  padding: 16px;
+}
+
+.panel h3 {
+  font-size: 1.05rem;
+  margin-bottom: 12px;
+}
+
+.ayuda {
+  color: var(--suave);
+  font-size: 0.85rem;
+  margin: -6px 0 12px;
+}
+
+.fila-barra {
+  display: grid;
+  grid-template-columns: 80px 1fr 28px;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  margin: 8px 0;
+}
+
+.fila-barra .valor {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.barra {
+  height: 8px;
+  background: #0c1520;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barra span {
+  display: block;
+  height: 100%;
+  background: var(--celeste);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.fila-barra.peligro .barra span {
+  background: var(--peligro);
+}
+
+.caja {
+  grid-column: 2 / 4;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+}
+
+.caja.negativa {
+  color: var(--peligro);
+}
+
+/* Cartas */
+
+.cartas {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.carta {
+  font: inherit;
+  color: var(--texto);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 14px;
+  background: #0f1a28;
+  border: 1px solid var(--borde);
+  border-top: 4px solid var(--comun);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.carta:hover {
+  transform: translateY(-3px);
+  border-color: var(--celeste);
+}
+
+.carta .rareza {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--comun);
+}
+
+.carta .descripcion {
+  color: var(--suave);
+  font-size: 0.85rem;
+  flex: 1;
+}
+
+.carta .efecto {
+  font-weight: 700;
+  color: var(--sol);
+}
+
+.carta.rara {
+  border-top-color: var(--rara);
+}
+.carta.rara .rareza {
+  color: var(--rara);
+}
+.carta.dorada {
+  border-top-color: var(--dorada);
+  background: linear-gradient(180deg, #2a2412, #0f1a28 60%);
+}
+.carta.dorada .rareza {
+  color: var(--dorada);
+}
+.carta.iconica {
+  border-top-color: var(--iconica);
+  background: linear-gradient(180deg, #2a1640, #0f1a28 60%);
+  box-shadow: 0 0 18px #c77dff44;
+}
+.carta.iconica .rareza {
+  color: var(--iconica);
+}

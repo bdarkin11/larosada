@@ -1,0 +1,161 @@
+{
+ "filas": [
+  {
+   "edad": 20,
+   "n": 300,
+   "cajaP25": 6000,
+   "cajaP50": 12000,
+   "cajaP75": 30000,
+   "ingresoP50": 6000,
+   "rangoP50": 0,
+   "famaP50": 6,
+   "imagenP50": 52,
+   "construccionP50": 8
+  },
+  {
+   "edad": 25,
+   "n": 300,
+   "cajaP25": 16500,
+   "cajaP50": 27500,
+   "cajaP75": 45500,
+   "ingresoP50": 6000,
+   "rangoP50": 0,
+   "famaP50": 5,
+   "imagenP50": 55,
+   "construccionP50": 14
+  },
+  {
+   "edad": 30,
+   "n": 300,
+   "cajaP25": 37000,
+   "cajaP50": 58000,
+   "cajaP75": 81000,
+   "ingresoP50": 12000,
+   "rangoP50": 1,
+   "famaP50": 5,
+   "imagenP50": 56,
+   "construccionP50": 32
+  },
+  {
+   "edad": 35,
+   "n": 300,
+   "cajaP25": 83500,
+   "cajaP50": 106500,
+   "cajaP75": 131500,
+   "ingresoP50": 12000,
+   "rangoP50": 1,
+   "famaP50": 5,
+   "imagenP50": 56,
+   "construccionP50": 50
+  },
+  {
+   "edad": 40,
+   "n": 300,
+   "cajaP25": 134000,
+   "cajaP50": 160000,
+   "cajaP75": 203000,
+   "ingresoP50": 20000,
+   "rangoP50": 2,
+   "famaP50": 5,
+   "imagenP50": 55,
+   "construccionP50": 63
+  },
+  {
+   "edad": 45,
+   "n": 300,
+   "cajaP25": 184500,
+   "cajaP50": 229500,
+   "cajaP75": 294500,
+   "ingresoP50": 20000,
+   "rangoP50": 2,
+   "famaP50": 5,
+   "imagenP50": 52,
+   "construccionP50": 68
+  },
+  {
+   "edad": 50,
+   "n": 300,
+   "cajaP25": 248000,
+   "cajaP50": 315000,
+   "cajaP75": 412000,
+   "ingresoP50": 20000,
+   "rangoP50": 2,
+   "famaP50": 5,
+   "imagenP50": 49,
+   "construccionP50": 72
+  },
+  {
+   "edad": 55,
+   "n": 300,
+   "cajaP25": 321500,
+   "cajaP50": 413500,
+   "cajaP75": 525500,
+   "ingresoP50": 28000,
+   "rangoP50": 3,
+   "famaP50": 5,
+   "imagenP50": 46,
+   "construccionP50": 75
+  },
+  {
+   "edad": 60,
+   "n": 296,
+   "cajaP25": 409000,
+   "cajaP50": 521000,
+   "cajaP75": 649000,
+   "ingresoP50": 30000,
+   "rangoP50": 3,
+   "famaP50": 5,
+   "imagenP50": 43,
+   "construccionP50": 77
+  },
+  {
+   "edad": 65,
+   "n": 281,
+   "cajaP25": 502500,
+   "cajaP50": 657500,
+   "cajaP75": 797500,
+   "ingresoP50": 30000,
+   "rangoP50": 3,
+   "famaP50": 5,
+   "imagenP50": 41,
+   "construccionP50": 78
+  },
+  {
+   "edad": 70,
+   "n": 225,
+   "cajaP25": 596000,
+   "cajaP50": 776000,
+   "cajaP75": 923000,
+   "ingresoP50": 30000,
+   "rangoP50": 3,
+   "famaP50": 5,
+   "imagenP50": 40,
+   "construccionP50": 81
+  },
+  {
+   "edad": 75,
+   "n": 136,
+   "cajaP25": 709500,
+   "cajaP50": 923500,
+   "cajaP75": 1068500,
+   "ingresoP50": 30000,
+   "rangoP50": 3,
+   "famaP50": 5,
+   "imagenP50": 41,
+   "construccionP50": 82
+  },
+  {
+   "edad": 80,
+   "n": 58,
+   "cajaP25": 815000,
+   "cajaP50": 1051000,
+   "cajaP75": 1182000,
+   "ingresoP50": 30000,
+   "rangoP50": 3,
+   "famaP50": 5,
+   "imagenP50": 40,
+   "construccionP50": 82
+  }
+ ],
+ "costoRelativoMedioEventos": 0.06164512896999161
+}

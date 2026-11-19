@@ -1,0 +1,5 @@
+# Todo el texto del proyecto va con fin de línea LF, en Windows también.
+* text=auto eol=lf
+*.png binary
+*.jpg binary
+*.ico binary

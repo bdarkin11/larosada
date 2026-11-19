@@ -1,0 +1,128 @@
+/* Botones físicos */
+
+.boton-barra {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  font-family: var(--ui);
+  font-weight: 900;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  padding: 11px 12px 10px;
+  border-radius: 10px;
+  border: 2px solid #2d4260;
+  border-bottom-width: 5px;
+  border-bottom-color: #0a121c;
+  background: linear-gradient(180deg, #1f2e42, #131d2a);
+  box-shadow: 0 4px 10px #0006, inset 0 1px 0 #ffffff1a;
+  transition: transform 0.08s, filter 0.15s, border-color 0.15s;
+}
+
+.boton-barra .icono {
+  font-size: 1rem;
+  line-height: 1;
+  filter: drop-shadow(0 1px 0 #0008);
+}
+
+.boton-barra:hover:not(:disabled) {
+  filter: brightness(1.15);
+  transform: translateY(-1px);
+}
+
+.boton-barra:active:not(:disabled) {
+  transform: translateY(3px);
+  border-bottom-width: 2px;
+  box-shadow: 0 1px 3px #0006, inset 0 2px 6px #0007;
+}
+
+.boton-barra.tienda {
+  color: #4ade80;
+  border-color: #22a35a;
+  border-bottom-color: #0b3a20;
+  background: linear-gradient(180deg, #17352a, #10241c);
+}
+
+.boton-barra.poder-boton {
+  color: #7dd6ff;
+  border-color: #2f86b8;
+  border-bottom-color: #0b2c40;
+  background: linear-gradient(180deg, #16314a, #10223a);
+}
+
+.boton-barra.peligro {
+  color: #ff9a92;
+  border-color: #8a3a3a;
+  border-bottom-color: #3a1214;
+  background: linear-gradient(180deg, #3a1d21, #2a1417);
+}
+
+.boton-barra:disabled {
+  filter: grayscale(0.6);
+}
+
+/* La cartelera de "Lejos del poder" */
+
+.cartelera {
+  position: relative;
+  border: 3px solid #b8892b;
+  border-left-width: 3px;
+  border-radius: 6px;
+  background:
+    repeating-linear-gradient(135deg, #ffffff04 0 8px, transparent 8px 16px),
+    radial-gradient(circle at 20% 20%, #2a2312 0%, transparent 60%),
+    #120f0a;
+  box-shadow: 0 0 0 4px #0d131a, 0 0 0 6px #6b4f18, 0 12px 26px #0008, inset 0 0 30px #000a;
+  text-align: center;
+}
+
+.cartelera::before,
+.cartelera::after {
+  content: '';
+  position: absolute;
+  top: 8px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, #f7e3a8, #8a6720);
+  box-shadow: 0 1px 2px #000;
+}
+
+.cartelera::before { left: 8px; }
+.cartelera::after { right: 8px; }
+
+.cartelera-sobre {
+  margin: 0 0 2px;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #c9a24a;
+}
+
+.cartelera h3 {
+  font-family: var(--titulo);
+  font-weight: 400;
+  font-size: 2rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #f2c94c;
+  text-shadow: 0 0 14px #f2b63255, 0 2px 0 #000;
+  margin-bottom: 8px;
+}
+
+.cartelera .ayuda {
+  color: #e9dcc0;
+  margin: 0 auto 10px;
+  max-width: 62ch;
+}
+
+.cartelera .aviso-base {
+  display: inline-block;
+  padding: 6px 12px;
+  border: 1px dashed #b8892b;
+  border-radius: 6px;
+  color: #ffd76a;
+  font-weight: 700;
+  font-size: 0.85rem;
+}

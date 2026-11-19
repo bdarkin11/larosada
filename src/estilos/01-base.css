@@ -1,0 +1,49 @@
+:root {
+  --fondo: #0d1521;
+  --panel: #152234;
+  --borde: #24364d;
+  --texto: #e8eef5;
+  --suave: #93a6bd;
+  --celeste: #75aadb;
+  --sol: #f2b632;
+  --peligro: #d9534f;
+  --verde: #3fcf7a;
+  --rojo: #ff5d57;
+  --comun: #6c7f96;
+  --rara: #75aadb;
+  --dorada: #d4af37;
+  --iconica: #c77dff;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Lo oculto queda oculto, aunque su clase le dé otro display. */
+[hidden] {
+  display: none !important;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at 50% -20%, #1d3350, var(--fondo) 60%);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  line-height: 1.45;
+}
+
+#app {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 700;
+  margin: 0;
+}

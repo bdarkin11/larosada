@@ -1,0 +1,200 @@
+/* Armado del personaje */
+
+.ficha .perfil {
+  font-size: 0.85rem;
+  color: var(--celeste);
+}
+
+.armado-tablero {
+  grid-template-columns: 1fr 300px;
+}
+
+.vista-previa {
+  position: sticky;
+  top: 16px;
+}
+
+.vista-previa > div {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.vista-previa .boton {
+  min-width: 0;
+  width: 100%;
+}
+
+.titulo-previa {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 12px;
+  font-size: 0.85rem;
+  color: var(--suave);
+}
+
+.campo input,
+.campo select {
+  font: inherit;
+  font-size: 1rem;
+  color: var(--texto);
+  background: #0f1a28;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.campo input:focus,
+.campo select:focus {
+  outline: none;
+  border-color: var(--celeste);
+}
+
+.opciones-grilla {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.opciones-grilla.tres {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.opcion em {
+  font-style: normal;
+  font-weight: 700;
+  font-size: 0.8rem;
+  color: var(--sol);
+}
+
+.opcion.seleccionada,
+.carta.seleccionada {
+  border-color: var(--celeste);
+  box-shadow: 0 0 0 2px var(--celeste);
+}
+
+.carta.seleccionada {
+  transform: translateY(-3px);
+}
+
+.eje {
+  margin: 14px 0;
+}
+
+.eje-extremos {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: var(--suave);
+  margin-bottom: 4px;
+}
+
+.eje input[type='range'] {
+  width: 100%;
+  accent-color: var(--celeste);
+}
+
+.ideologia {
+  margin: 8px 0 0;
+  font-size: 0.9rem;
+  color: var(--suave);
+}
+
+.ideologia strong {
+  color: var(--texto);
+}
+
+.progreso {
+  display: flex;
+  gap: 6px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.progreso li {
+  width: 28px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--borde);
+}
+
+.progreso li.hecho {
+  background: var(--celeste);
+}
+
+.progreso li.actual {
+  background: var(--sol);
+}
+
+.natal {
+  margin-bottom: 16px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: var(--suave);
+  border: 1px solid var(--borde);
+  background: var(--panel);
+}
+
+.natal strong {
+  color: var(--texto);
+  margin-right: 4px;
+}
+
+.natal.centro {
+  border-left: 4px solid var(--celeste);
+}
+
+.natal.interior {
+  border-left: 4px solid var(--sol);
+}
+
+.navegacion-armado {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 12px 0;
+  background: linear-gradient(180deg, transparent, var(--fondo) 30%);
+}
+
+.navegacion-armado .boton {
+  min-width: 0;
+  flex: 1;
+  max-width: 260px;
+}
+
+.boton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.nombre-campo {
+  margin-top: 20px;
+}
+
+.aviso-base {
+  font-size: 0.8rem;
+  color: var(--sol);
+}
+
+/* Fin */
+
+.panel.fin {
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+.panel.fin .motivo {
+  font-family: Georgia, serif;
+  font-size: 1.2rem;
+}

@@ -1,0 +1,38 @@
+/* ==========================================================================
+   Piel de videojuego (2026-11-07): fondo profundo, títulos de impacto,
+   tarjetas con volumen y botones físicos.
+   ========================================================================== */
+
+:root {
+  --fondo: #0d131a;
+  --titulo: 'Anton', Impact, 'Arial Narrow Bold', sans-serif;
+  --ui: 'Montserrat', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  --celeste-vivo: #38bdf8;
+  --amarillo: #f5c518;
+  --verde-vivo: #22c55e;
+}
+
+body {
+  background:
+    repeating-linear-gradient(0deg, #ffffff05 0 1px, transparent 1px 3px),
+    radial-gradient(ellipse at 50% -10%, #1b2b3f 0%, transparent 60%),
+    radial-gradient(ellipse at 100% 100%, #121c28 0%, transparent 50%),
+    var(--fondo);
+  background-attachment: fixed;
+  font-family: var(--ui);
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--ui);
+  font-weight: 900;
+  letter-spacing: 0.01em;
+}
+
+.panel {
+  background: linear-gradient(180deg, #151f2c, #111923);
+  border: 1px solid #22324a;
+  border-radius: 12px;
+  box-shadow: 0 10px 24px #00000055, inset 0 1px 0 #ffffff0a;
+}

@@ -1,0 +1,116 @@
+/* Elecciones: candidatura, interna y campaña */
+
+.identidad .mandato {
+  font-size: 0.75rem;
+  color: var(--celeste);
+}
+
+.panel.eleccion {
+  border-color: var(--celeste);
+}
+
+.candidaturas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.candidatura {
+  font: inherit;
+  color: var(--texto);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px 14px;
+  background: #0f1a28;
+  border: 1px solid var(--borde);
+  border-left: 4px solid var(--celeste);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.candidatura:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: var(--celeste);
+}
+
+.candidatura:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  border-left-color: var(--borde);
+}
+
+.candidatura-cabeza {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: center;
+}
+
+.candidatura-datos {
+  font-size: 0.75rem;
+  color: var(--suave);
+}
+
+.encuesta {
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.encuesta.favorito { color: var(--verde); }
+.encuesta.competitivo { color: var(--celeste); }
+.encuesta.dificil { color: var(--sol); }
+.encuesta.muy-dificil { color: var(--rojo); }
+
+.no-presentarse {
+  margin-top: 12px;
+}
+
+.cara-a-cara {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 4px 0 14px;
+  flex-wrap: wrap;
+}
+
+.contra {
+  font-family: Georgia, serif;
+  font-weight: 700;
+  color: var(--sol);
+  font-size: 1.2rem;
+}
+
+.candidato-rival {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 12px;
+  background: #0f1a28;
+  border: 1px solid var(--borde);
+  border-left: 4px solid var(--color-partido);
+  border-radius: 6px;
+  min-width: 0;
+}
+
+.candidato-rival em {
+  font-size: 0.75rem;
+  color: var(--sol);
+}
+
+.candidato-rival small {
+  font-size: 0.72rem;
+  color: var(--suave);
+}
+
+.candidato-rival.vos {
+  box-shadow: 0 0 0 1px var(--celeste);
+}
+
+.rivales {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 14px;
+}

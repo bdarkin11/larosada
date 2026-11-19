@@ -1,0 +1,67 @@
+/* Presidencia, promesas y la calle */
+.alerta-evento.tipo-estado { --tono: #6fd3ff; }
+.alerta-evento.tipo-ley { --tono: #f5c518; }
+.alerta-evento.tipo-huelga { --tono: #ff4d6d; }
+
+.fila-pais {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 14px;
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: 1px solid var(--borde);
+  border-left: 3px solid #6fd3ff;
+  border-radius: 8px;
+  background: #0f1a28;
+  font-size: 0.85rem;
+}
+
+.titulo-pais {
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: #6fd3ff;
+}
+
+.indicador strong { font-variant-numeric: tabular-nums; }
+.indicador.malo strong { color: var(--rojo); }
+
+.dato-calle strong, .dato-promesas { font-variant-numeric: tabular-nums; }
+.dato-calle.caliente { color: var(--rojo); font-weight: 700; }
+
+.promesas-campania {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 0 0 14px;
+}
+
+.promesa {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  padding: 8px 10px;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  background: #0f1a28;
+  cursor: pointer;
+}
+
+.promesa.marcada { border-color: var(--sol); }
+.promesa input { margin-top: 3px; accent-color: var(--sol); }
+.promesa span { display: flex; flex-direction: column; gap: 2px; }
+.promesa small { color: var(--suave); font-size: 0.76rem; }
+.promesa small .bueno { color: var(--verde); font-weight: 700; }
+.promesa:has(input:disabled) { opacity: 0.5; cursor: default; }
+
+.consecuencia {
+  margin: 6px 0 0;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+.ayuda.malo, .ayuda .malo { color: var(--rojo); }
+.alerta-evento.tipo-crisis { --tono: #ff5d57; }
+.alerta-evento.tipo-juicio { --tono: #c77dff; }
+.alerta-evento.tipo-renuncia { --tono: #ff5d57; }

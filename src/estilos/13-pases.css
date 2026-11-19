@@ -1,0 +1,81 @@
+/* Cierre de listas */
+
+.alerta.celeste {
+  background: var(--celeste);
+  color: #0b1a2b;
+}
+
+.cierre-listas {
+  border-color: var(--celeste);
+}
+
+.ofertas {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.oferta-pase {
+  font: inherit;
+  color: var(--texto);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px 14px;
+  background: #0f1a28;
+  border: 1px solid var(--borde);
+  border-left: 5px solid var(--color-partido);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.15s, border-color 0.15s;
+}
+
+.oferta-pase:hover {
+  transform: translateY(-2px);
+  border-color: var(--color-partido);
+}
+
+.oferta-pase.imperdonable {
+  background: linear-gradient(180deg, #2a1012, #0f1a28 70%);
+}
+
+.oferta-cabeza {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.etiqueta-pase {
+  font-size: 0.62rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 3px 7px;
+  border-radius: 4px;
+  white-space: nowrap;
+}
+
+.etiqueta-pase.renovacion { background: var(--verde); color: #062414; }
+.etiqueta-pase.pase { background: var(--celeste); color: #0b1a2b; }
+.etiqueta-pase.traicion { background: var(--rojo); color: #2a0503; }
+
+.cargo-oferta {
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.cargo-oferta.sube { color: var(--verde); }
+.cargo-oferta.baja { color: var(--rojo); }
+.cargo-oferta.igual { color: var(--suave); font-weight: 400; }
+
+.oferta-nota {
+  font-size: 0.78rem;
+  color: var(--suave);
+}
+
+.oferta-nota.malo {
+  color: var(--rojo);
+  font-weight: 700;
+}

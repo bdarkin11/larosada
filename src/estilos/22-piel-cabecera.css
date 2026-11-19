@@ -1,0 +1,198 @@
+/* La cabecera */
+
+.tablero-sup {
+  background: linear-gradient(180deg, #131c28, #0f1620);
+  border: 1px solid #26374f;
+  border-radius: 14px;
+  box-shadow: 0 14px 30px #00000066, inset 0 1px 0 #ffffff0d;
+}
+
+.cabeza {
+  gap: 16px;
+}
+
+.poder,
+.poder.n2,
+.poder.n3,
+.poder.n4 {
+  width: 96px;
+  height: 96px;
+  border-radius: 12px;
+  background: linear-gradient(160deg, #7dd6ff, var(--celeste-vivo) 45%, #0ea5e9);
+  color: #04131f;
+  box-shadow: 0 0 0 2px #0b2433, 0 0 22px #38bdf866, inset 0 2px 0 #ffffff66, inset 0 -4px 0 #0369a1;
+}
+
+.poder strong {
+  font-family: var(--titulo);
+  font-size: 3.1rem;
+  font-weight: 400;
+  line-height: 0.95;
+  display: flex;
+  align-items: flex-start;
+}
+
+.poder span {
+  font-family: var(--ui);
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.18em;
+}
+
+.tablero-sup .poder .flecha {
+  font-size: 0.85rem;
+  margin-left: 2px;
+  filter: drop-shadow(0 1px 0 #ffffff88);
+}
+
+.tablero-sup .poder .flecha.bueno { color: #0f7a3a; }
+.tablero-sup .poder .flecha.malo { color: #b4231d; }
+
+.identidad h2 {
+  font-family: var(--titulo);
+  font-weight: 400;
+  font-size: clamp(1.6rem, 4vw, 2.3rem);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  line-height: 1.05;
+  text-shadow: 0 2px 0 #000;
+}
+
+.identidad p {
+  font-size: 0.82rem;
+}
+
+.identidad .cargo-actual {
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.partido-actual {
+  display: inline-flex;
+  margin-top: 4px;
+  padding: 2px 9px 2px 7px;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.76rem;
+  color: #fff;
+  background: color-mix(in srgb, var(--color-partido) 35%, #0d131a);
+  border: 1px solid color-mix(in srgb, var(--color-partido) 70%, #ffffff);
+}
+
+.badge-lugar {
+  display: inline-flex;
+  margin: 4px 0 0 6px;
+  padding: 2px 9px;
+  border-radius: 6px;
+  font-weight: 800;
+  font-size: 0.72rem;
+  color: #1c1300 !important;
+  background: var(--sol);
+  box-shadow: inset 0 -2px 0 #0003;
+}
+
+.padrino-linea:empty { display: none; }
+
+.lugar {
+  border-left: none;
+  padding-left: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+}
+
+.lugar .escarapela {
+  width: 46px;
+  height: 46px;
+  opacity: 0.85;
+  filter: drop-shadow(0 2px 6px #0008);
+}
+
+.lugar-texto {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  border-left: 3px solid var(--celeste);
+}
+
+.lugar.interior .lugar-texto { border-left-color: var(--sol); }
+
+.lugar-texto strong {
+  font-weight: 900;
+}
+
+/* La barra de la construcción */
+
+.trayecto {
+  background: linear-gradient(180deg, #0f1823, #0c131c);
+  border: 1px solid #22324a;
+  border-radius: 10px;
+}
+
+.trayecto-barra,
+.trayecto-barra.construccion {
+  height: 12px;
+  border-radius: 999px;
+  background: #060a0f;
+  border: 1px solid #2c3f58;
+  box-shadow: inset 0 2px 4px #000a;
+  overflow: hidden;
+}
+
+.trayecto-barra.construccion span {
+  border-radius: 999px;
+  background: linear-gradient(90deg, #16a34a, #84cc16 55%, #facc15);
+  box-shadow: 0 0 10px #84cc1688, inset 0 1px 0 #ffffff66;
+}
+
+.etapa-actual {
+  font-family: var(--titulo);
+  font-weight: 400;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+}
+
+/* La grilla de estadísticas */
+
+.estadistica {
+  border: 2px solid #2b3d55;
+  border-radius: 10px;
+  padding: 10px 12px;
+  background: linear-gradient(180deg, #1c2a3b, #121c28);
+  box-shadow: 0 6px 14px #0007, inset 0 1px 0 #ffffff12;
+}
+
+.estadistica.n2 { border-color: #3c76a8; }
+.estadistica.n3 { border-color: #b8892b; }
+.estadistica.n4 { border-color: #2f9e5e; }
+.estadistica.alerta-causas { border-color: #b8892b; }
+.estadistica.peligro { border-color: var(--rojo); box-shadow: 0 0 14px #ff5d5744, inset 0 1px 0 #ffffff12; }
+
+.estadistica .valor {
+  font-family: var(--ui);
+  font-size: 1.85rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.estadistica .etiqueta {
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.estadistica .flecha {
+  font-size: 0.8rem;
+}
+
+.estadistica.plata {
+  border-color: var(--verde-vivo);
+  background: linear-gradient(180deg, #143022, #0f1d17);
+  box-shadow: 0 0 16px #22c55e55, inset 0 0 18px #22c55e26, inset 0 1px 0 #ffffff14;
+}
+
+.estadistica.plata .valor {
+  font-size: 1.45rem;
+  color: #4ade80;
+  text-shadow: 0 0 10px #22c55e88;
+}

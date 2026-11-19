@@ -1,0 +1,14 @@
+# Dependencias y compilados
+node_modules
+dist
+
+# Claves y configuración local: nunca se suben
+.env
+.env.*
+!.env.example
+
+# Herramientas y registros locales
+.claude
+*.log
+test-results/
+playwright-report/

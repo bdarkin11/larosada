@@ -1,0 +1,45 @@
+/* Tienda ampliada */
+
+.tienda-seccion + .tienda-seccion {
+  margin-top: 18px;
+}
+
+.tienda-items.grilla {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.item-tienda.comprado {
+  border-color: var(--verde);
+  background: #0f2a1d;
+  opacity: 1;
+}
+
+.item-tenes {
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: var(--verde);
+}
+
+.aviso-flotante {
+  position: fixed;
+  left: 50%;
+  top: 20px;
+  z-index: 40;
+  transform: translateX(-50%);
+  background: var(--verde);
+  color: #062414;
+  font-weight: 800;
+  padding: 8px 16px;
+  border-radius: 6px;
+  box-shadow: 0 8px 24px #0008;
+  animation: aviso 2.2s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes aviso {
+  0% { opacity: 0; transform: translate(-50%, -12px); }
+  12% { opacity: 1; transform: translate(-50%, 0); }
+  80% { opacity: 1; }
+  100% { opacity: 0; }
+}

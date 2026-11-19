@@ -1,0 +1,91 @@
+/* Partido y construcción en la barra de arriba */
+
+.partido-actual {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.partido-actual::before {
+  content: "";
+  width: 9px;
+  height: 9px;
+  border-radius: 2px;
+  background: var(--color-partido);
+  flex: none;
+}
+
+.identidad .cargo-actual {
+  color: var(--texto);
+}
+
+.etapa-actual {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  font-size: 0.75rem;
+  color: var(--texto);
+}
+
+.etapa-actual.referente { color: var(--celeste); }
+.etapa-actual.caudillo { color: var(--sol); }
+.etapa-actual.procer { color: var(--verde); }
+
+.trayecto-barra.construccion span {
+  background: linear-gradient(90deg, var(--celeste), var(--sol));
+}
+
+.trayecto-pie {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--suave);
+  margin-top: 6px;
+}
+
+.trayecto-pie strong {
+  color: var(--texto);
+}
+
+.activos {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.activos-titulo {
+  font-size: 0.66rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--suave);
+  margin-right: 4px;
+}
+
+.activo {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 6px;
+  background: #0f1a28;
+  border: 1px solid var(--verde);
+  font-size: 0.95rem;
+}
+
+.activo small {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 15px;
+  height: 15px;
+  border-radius: 8px;
+  background: var(--celeste);
+  color: #0b1a2b;
+  font-size: 0.6rem;
+  font-weight: 800;
+  display: grid;
+  place-items: center;
+}

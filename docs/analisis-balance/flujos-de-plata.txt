@@ -1,0 +1,12 @@
+rango 0: n=3301 sueldo 6000 estructura 5583 otros 202 cajaMediana 16500 (= 2.8 sueldos)
+rango 1: n=2043 sueldo 12000 estructura 6242 otros 353 cajaMediana 51000 (= 4.3 sueldos)
+rango 2: n=4088 sueldo 18754 estructura 8551 otros 739 cajaMediana 120300 (= 6.4 sueldos)
+rango 3: n=3091 sueldo 28881 estructura 10765 otros 1088 cajaMediana 192600 (= 6.7 sueldos)
+rango 4: n=2763 sueldo 42438 estructura 10772 otros 1001 cajaMediana 209800 (= 4.9 sueldos)
+rango 5: n=1616 sueldo 55835 estructura 12011 otros 1290 cajaMediana 253000 (= 4.5 sueldos)
+rango 6: n=89 sueldo 80000 estructura 9485 otros 2302 cajaMediana 153300 (= 1.9 sueldos)
+
+presidentes: 13; mandatos: [4,1,1,1,2,2,6,2,4,2,6,4,1]
+[{"s":2,"mandatos":4,"despues":[{"edad":44,"imagen":41,"fama":83,"poder":70,"cargo":"senador"},{"edad":45,"imagen":42,"fama":80,"poder":70,"cargo":"senador"},{"edad":54,"imagen":28,"fama":81,"poder":79,"cargo":"senador"},{"edad":55,"imagen":26,"fama":77,"poder":79,"cargo":"senador"},{"edad":56,"imagen":22,"fama":81,"poder":74,"cargo":"diputado"},{"edad":57,"imagen":23,"fama":76,"poder":71,"cargo":"diputado"}]},{"s":24,"mandatos":1,"despues":[{"edad":44,"imagen":49,"fama":77,"poder":66,"cargo":"senador"},{"edad":45,"imagen":49,"fama":76,"poder":62,"cargo":"senador"},{"edad":46,"imagen":48,"fama":73,"poder":63,"cargo":"senador"},{"edad":47,"imagen":47,"fama":71,"poder":64,"cargo":"senador"},{"edad":48,"imagen":47,"fama":76,"poder":65,"cargo":"diputado"},{"edad":49,"imagen":47,"fama":72,"poder":63,"cargo":"diputado"}]},{"s":38,"mandatos":1,"despues":[{"edad":68,"imagen":37,"fama":77,"poder":71,"cargo":"senador"},{"edad":69,"imagen":32,"fama":73,"poder":73,"cargo":"senador"},{"edad":70,"imagen":33,"fama":71,"poder":73,"cargo":"senador"},{"edad":71,"imagen":34,"fama":68,"poder":72,"cargo":"senador"},{"edad":72,"imagen":30,"fama":74,"poder":72,"cargo":"diputado"},{"edad":73,"imagen":29,"fama":71,"poder":70,"cargo":"diputado"}]},{"s":51,"mandatos":1,"despues":[{"edad":76,"imagen":37,"fama":81,"poder":75,"cargo":"senador"},{"edad":77,"imagen":37,"fama":80,"poder":74,"cargo":"senador"},{"edad":78,"imagen":32,"fama":78,"poder":73,"cargo":"senador"}]}]
+
+asesor-imagen 12000, jefe-prensa 12000, operador 12000, encuestador 10500, abogado 19000, medico 12000, armador 18000, redes 3000, spots 9000, coaching 3000, gira 13000, descanso 1500, auto 25000, country 60000, madero 120000, yate 250000

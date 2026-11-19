@@ -1,0 +1,140 @@
+/* Tienda */
+
+body.sin-scroll {
+  overflow: hidden;
+}
+
+.capa {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  background: #050a12cc;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 24px 16px;
+  overflow-y: auto;
+}
+
+.capa[hidden] {
+  display: none;
+}
+
+.tienda {
+  width: 100%;
+  max-width: 560px;
+  background: var(--panel);
+  border: 1px solid var(--borde);
+  border-top: 3px solid var(--verde);
+  border-radius: 10px;
+  padding: 16px;
+  animation: entrar 0.2s ease-out;
+}
+
+@keyframes entrar {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+
+.tienda-cabeza {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.tienda-cabeza h3 {
+  flex: 1;
+  font-size: 1.3rem;
+}
+
+.tienda-caja {
+  font-weight: 800;
+  background: var(--verde);
+  color: #062414;
+  border-radius: 4px;
+  padding: 3px 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.tienda-caja.peligro {
+  background: var(--rojo);
+}
+
+.cerrar {
+  font: inherit;
+  font-size: 1.5rem;
+  line-height: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  border: 1px solid var(--borde);
+  background: #0f1a28;
+  color: var(--texto);
+  cursor: pointer;
+}
+
+.tienda-seccion h4 {
+  margin: 0 0 8px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--verde);
+}
+
+.tienda-items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.item-tienda {
+  font: inherit;
+  color: var(--texto);
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 12px 14px;
+  background: #0f1a28;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.item-tienda:hover:not(:disabled) {
+  border-color: var(--verde);
+}
+
+.item-tienda:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.item-cabeza {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.precio {
+  color: var(--verde);
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.item-texto {
+  color: var(--suave);
+  font-size: 0.85rem;
+}
+
+.item-datos {
+  font-size: 0.75rem;
+  color: var(--celeste);
+}
+
+.item-motivo {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--rojo);
+}

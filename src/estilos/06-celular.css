@@ -1,0 +1,37 @@
+/* Celular */
+
+@media (max-width: 760px) {
+  .tablero {
+    grid-template-columns: 1fr;
+  }
+  .principal-col {
+    order: -1;
+  }
+  .cartas,
+  .opciones-grilla,
+  .opciones-grilla.tres {
+    grid-template-columns: 1fr;
+  }
+  .armado-tablero {
+    grid-template-columns: 1fr;
+  }
+  .vista-previa {
+    position: static;
+  }
+}
+
+.base-interior {
+  border-left: 4px solid var(--sol);
+}
+
+.base-interior .aviso-base {
+  margin: 8px 0 0;
+}
+
+@media (max-width: 760px) {
+  .armado .ficha {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+}

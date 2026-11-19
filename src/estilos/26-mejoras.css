@@ -1,0 +1,126 @@
+/* Mejoras: retrato, brújula, ayuda al tocar, reparto de cartas y sonido */
+
+.cabeza {
+  grid-template-columns: auto auto 1fr auto;
+}
+
+.retrato-jugador .retrato {
+  display: block;
+  width: 78px;
+  height: 91px;
+  border-radius: 10px;
+  border: 2px solid #2b3d55;
+  box-shadow: 0 6px 14px #0008;
+}
+
+.lugar .brujula {
+  width: 52px;
+  height: 52px;
+  flex: none;
+}
+
+/* La ayuda al tocar una estadística, el poder o la construcción */
+.estadistica,
+.tablero-sup .poder,
+.trayecto {
+  position: relative;
+  cursor: help;
+}
+
+.estadistica:focus,
+.tablero-sup .poder:focus,
+.trayecto:focus {
+  outline: 2px solid var(--celeste-vivo);
+  outline-offset: 2px;
+}
+
+.estadistica:focus::after,
+.tablero-sup .poder:focus::after,
+.trayecto:focus::after {
+  content: attr(data-ayuda);
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  top: calc(100% + 8px);
+  width: max(220px, 100%);
+  max-width: 300px;
+  padding: 9px 11px;
+  border: 1px solid var(--celeste-vivo);
+  border-radius: 8px;
+  background: #0b121a;
+  color: #dbe7f3;
+  font-family: var(--ui);
+  font-size: 0.76rem;
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: none;
+  text-align: left;
+  box-shadow: 0 10px 22px #000c;
+  pointer-events: none;
+}
+
+.trayecto:focus::after { max-width: 420px; }
+
+/* Las cartas llegan boca abajo y se dan vuelta */
+.carta .dorso {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border-radius: 10px;
+  opacity: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 50%, #f5c518 0 14px, transparent 15px),
+    repeating-linear-gradient(45deg, #13233a 0 8px, #1a3150 8px 16px);
+  box-shadow: inset 0 0 0 3px #f5c518;
+}
+
+.cartas.reparto .carta {
+  animation: voltear-carta 0.7s cubic-bezier(0.2, 0.8, 0.3, 1) backwards;
+  animation-delay: calc(var(--i) * 0.16s);
+}
+
+.cartas.reparto .carta .dorso {
+  animation: dorso-carta 0.7s linear backwards;
+  animation-delay: calc(var(--i) * 0.16s);
+}
+
+@keyframes voltear-carta {
+  0% { transform: perspective(900px) translateY(-30px) rotateY(180deg); }
+  100% { transform: none; }
+}
+
+@keyframes dorso-carta {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+.boton-barra.sonido {
+  min-width: 0;
+}
+
+@media (max-width: 760px) {
+  .cabeza {
+    grid-template-columns: auto 1fr;
+  }
+  .retrato-jugador {
+    display: none;
+  }
+  .lugar {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cartas.reparto .carta,
+  .cartas.reparto .carta .dorso {
+    animation: none;
+  }
+}
+
+.tablero-sup .poder strong .numero {
+  font: inherit;
+  letter-spacing: 0;
+  text-transform: none;
+}

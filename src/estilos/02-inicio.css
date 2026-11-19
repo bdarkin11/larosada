@@ -1,0 +1,78 @@
+/* Inicio */
+
+.inicio {
+  text-align: center;
+  padding: 12vh 0 0;
+}
+
+.inicio h1 {
+  font-size: clamp(3rem, 12vw, 6rem);
+  letter-spacing: 0.02em;
+  background: linear-gradient(180deg, #ffffff 30%, var(--celeste));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.sobretitulo {
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 0.8rem;
+  color: var(--sol);
+  margin: 0 0 8px;
+}
+
+.bajada {
+  color: var(--suave);
+  max-width: 420px;
+  margin: 12px auto 32px;
+}
+
+.nota {
+  color: var(--suave);
+  font-size: 0.8rem;
+  margin-top: 28px;
+}
+
+.acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+/* Botones */
+
+.boton {
+  font: inherit;
+  font-weight: 600;
+  color: var(--texto);
+  background: var(--panel);
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  padding: 12px 22px;
+  min-width: 240px;
+  cursor: pointer;
+  transition: border-color 0.15s, transform 0.15s;
+}
+
+.boton:hover {
+  border-color: var(--celeste);
+}
+
+.boton.principal {
+  background: var(--celeste);
+  border-color: var(--celeste);
+  color: #0b1a2b;
+}
+
+.boton.chico {
+  min-width: 0;
+  padding: 8px 14px;
+  font-size: 0.85rem;
+}
+
+.boton.peligro:hover {
+  border-color: var(--peligro);
+  color: #ffb3b0;
+}

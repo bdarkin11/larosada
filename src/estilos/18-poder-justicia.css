@@ -1,0 +1,240 @@
+/* El poder y la libreta */
+
+.poder-boton {
+  position: relative;
+}
+
+.globito {
+  display: inline-grid;
+  place-items: center;
+  min-width: 18px;
+  height: 18px;
+  margin-left: 4px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--sol);
+  color: #3a2a05;
+  font-size: 0.65rem;
+}
+
+.barra-poder {
+  position: relative;
+  height: 14px;
+  margin: 10px 0 6px;
+  background: #0a121d;
+  border-radius: 7px;
+  overflow: hidden;
+}
+
+.barra-poder .relleno {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: var(--celeste);
+  border-radius: 7px;
+}
+
+.barra-poder.solo .relleno { background: var(--rojo); }
+.barra-poder.alto .relleno { background: var(--verde); }
+
+.barra-poder .marca-objetivo {
+  position: absolute;
+  top: -2px;
+  bottom: -2px;
+  width: 3px;
+  margin-left: -1px;
+  background: var(--sol);
+}
+
+.estado-poder {
+  margin: 0 0 10px;
+  font-size: 0.9rem;
+}
+
+.estado-poder strong {
+  font-size: 1.3rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.fuentes-poder,
+.efectos-poder {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.fuentes-poder li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 5px 8px;
+  background: #0f1a28;
+  border-radius: 6px;
+}
+
+.fuentes-poder li strong { font-variant-numeric: tabular-nums; }
+.fuentes-poder li.total { border: 1px solid var(--sol); }
+.fuentes-poder li.total strong { color: var(--sol); }
+
+.efectos-poder li { padding-left: 14px; position: relative; }
+.efectos-poder li::before { content: '•'; position: absolute; left: 2px; color: var(--suave); }
+.efectos-poder .bueno { color: var(--verde); }
+.efectos-poder .malo { color: var(--rojo); }
+
+.tablero-sup .poder .flecha {
+  font-size: 0.7rem;
+  margin-left: 2px;
+  vertical-align: top;
+}
+
+.libreta {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.libreta ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.libreta li {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 8px;
+  background: #0f1a28;
+  border-radius: 6px;
+  font-size: 0.82rem;
+}
+
+.libreta li small {
+  color: var(--suave);
+  font-size: 0.7rem;
+}
+
+.libreta-titulo {
+  margin: 0 0 6px;
+  font-weight: 800;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.libreta-titulo.bueno { color: var(--verde); }
+.libreta-titulo.malo { color: var(--rojo); }
+
+@media (max-width: 760px) {
+  .escena-evento {
+    grid-template-columns: 1fr;
+    margin-top: 60px;
+  }
+  .lado-retrato {
+    width: 130px;
+    margin: 0 auto;
+  }
+  .globo::before {
+    left: 50%;
+    top: -14px;
+    margin-left: -9px;
+    border-width: 0 9px 14px 9px;
+    border-color: transparent transparent #f5f1e6 transparent;
+  }
+  .libreta {
+    grid-template-columns: 1fr;
+  }
+}
+
+.apoyos-campania {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 0.82rem;
+  color: var(--suave);
+  margin: 0 0 12px;
+}
+
+.apoyos-campania .bueno { color: var(--verde); }
+.apoyos-campania .malo { color: var(--rojo); }
+
+/* Justicia y caja negra */
+
+.fila-justicia {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.dato-negro,
+.dato-causa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.dato-negro {
+  background: #07090c;
+  border: 1px dashed #5a6472;
+  color: #c9d3df;
+}
+
+.dato-negro strong {
+  font-variant-numeric: tabular-nums;
+}
+
+.dato-causa {
+  background: #2a1012;
+  border: 1px solid var(--rojo);
+  color: #ffc9c6;
+}
+
+.escalera-causa {
+  display: inline-flex;
+  gap: 3px;
+}
+
+.escalera-causa i {
+  width: 14px;
+  height: 6px;
+  border-radius: 2px;
+  background: #4a2224;
+}
+
+.escalera-causa i.hecha {
+  background: var(--rojo);
+}
+
+.manos-limpias {
+  color: #fff;
+  font-weight: 700;
+}
+
+.chip.negro {
+  background: #07090c;
+  color: #c9d3df;
+  border: 1px dashed #5a6472;
+}
+
+.opcion-negra {
+  background: #07090c;
+  border-style: dashed;
+}
+
+.precio.negro {
+  color: #c9d3df;
+}
+
+.item-tienda.movida {
+  background: #07090c;
+  border-style: dashed;
+}

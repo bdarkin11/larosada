@@ -1,0 +1,211 @@
+/* Rosca en el Congreso */
+
+.rosca-tablero {
+  display: grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap: 12px;
+  margin: 14px 0;
+}
+
+.rosca-camara {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4px;
+  font-size: 0.85rem;
+}
+
+.rosca-camara-nombre {
+  font-weight: 700;
+}
+
+.rosca-camara-votos {
+  color: var(--suave);
+}
+
+.rosca-camara.alcanza .rosca-camara-votos {
+  color: var(--verde);
+  font-weight: 700;
+}
+
+.rosca-barra {
+  grid-column: 1 / -1;
+  height: 8px;
+  border-radius: 4px;
+  background: #0a121d;
+  overflow: hidden;
+}
+
+.rosca-barra span {
+  display: block;
+  height: 100%;
+  background: var(--sol);
+}
+
+.rosca-camara.alcanza .rosca-barra span {
+  background: var(--verde);
+}
+
+.rosca-fichas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.7rem;
+  color: var(--suave);
+}
+
+.rosca-fichas strong {
+  font-size: 1.5rem;
+  line-height: 1.1;
+  color: var(--sol);
+}
+
+.rosca-bloques {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.rosca-bloque {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 11px 12px;
+  text-align: left;
+  font: inherit;
+  font-size: 0.85rem;
+  color: var(--texto);
+  background: #0f1a28;
+  border: 1px solid #ffffff22;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.rosca-bloque:hover:not(:disabled) {
+  border-color: var(--sol);
+}
+
+.rosca-bloque.elegido {
+  border-color: var(--verde);
+  background: #14301f;
+}
+
+.rosca-bloque:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.rosca-bloque em {
+  color: var(--suave);
+  font-style: normal;
+}
+
+.rosca-bancas,
+.rosca-pelea {
+  font-size: 0.78rem;
+  color: var(--suave);
+}
+
+.rosca-pelea {
+  color: var(--sol);
+}
+
+.rosca-costo {
+  font-weight: 700;
+}
+
+@media (max-width: 520px) {
+  .rosca-tablero {
+    grid-template-columns: 1fr;
+  }
+
+  .rosca-fichas {
+    flex-direction: row;
+    justify-content: center;
+    gap: 6px;
+  }
+}
+
+/* Fiscalización: la noche electoral, mesa por mesa */
+
+.mesas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.mesa {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 74px;
+  padding: 8px;
+  text-align: left;
+  font: inherit;
+  font-size: 0.78rem;
+  color: var(--suave);
+  background: #0f1a28;
+  border: 1px solid #ffffff22;
+  border-radius: 8px;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.mesa.cubierta {
+  border-style: dashed;
+}
+
+.mesa-numero {
+  font-weight: 700;
+  color: var(--texto);
+}
+
+.mesa-plazo {
+  margin-top: auto;
+  height: 4px;
+  border-radius: 2px;
+  background: #0a121d;
+  overflow: hidden;
+}
+
+.mesa-plazo span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--rojo);
+}
+
+.mesa[data-clase="incidente"] {
+  border-color: var(--rojo);
+  background: #3a1518;
+  color: #fff;
+}
+
+.mesa[data-clase="en-camino"] {
+  border-color: var(--sol);
+  color: var(--sol);
+}
+
+.mesa[data-clase="salvada"] {
+  border-color: var(--verde);
+  color: var(--verde);
+}
+
+.mesa[data-clase="perdida"] {
+  color: var(--rojo);
+}
+
+/* Años de militancia */
+
+.opciones-formacion {
+  display: grid;
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.formacion-ideas {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 8px;
+}

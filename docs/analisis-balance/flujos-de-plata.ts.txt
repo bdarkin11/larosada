@@ -1,0 +1,52 @@
+import { it } from 'vitest';
+import { CARGOS } from '../datos/cargos';
+import { buscarEvento } from '../datos/eventos';
+import { valorOpcion } from './balance';
+import { descartarPendiente, elegirCarta, nuevaCarrera, resolverDetencion } from './carrera';
+import { candidaturas, cerrarEleccion, chanceLapicera, elegirCampania, elegirCandidatura, motivoSinCampania, resolverInterna } from './elecciones';
+import { gastoDeEstructura } from './escala';
+import { motivoOpcion, resolverEvento } from './eventos';
+import { decidirPase } from './pases';
+import { ITEMS } from '../datos/tienda';
+import type { Carrera } from './tipos';
+
+const env = (globalThis as any).process.env;
+
+it.runIf(!!env.ANALISIS)('flujos', { timeout: 600000 }, async () => {
+  const porRango: Record<number, { sueldo: number; estructura: number; resto: number; caja: number[]; n: number }> = {};
+  const presis: any[] = [];
+  for (let s = 0; s < 300; s++) {
+    let c: Carrera = nuevaCarrera({ semilla: s, estilo: 'pragmatico' });
+    let anioPresi = 0; let mandatos = 0; let fuePresi = false; const despues: any[] = [];
+    while (!c.fin) {
+      while (c.pendientes.length) c = descartarPendiente(c);
+      if (c.pases) c = decidirPase(c, 0);
+      if (c.eleccion) {
+        const ops = candidaturas(c).filter((x) => !x.motivo && x.chance >= 0.3).sort((a, b) => CARGOS[b.cargo].rango - CARGOS[a.cargo].rango);
+        c = elegirCandidatura(c, ops[0]?.cargo ?? null);
+        if (c.eleccion?.fase === 'interna') c = resolverInterna(c, chanceLapicera(c) > 0.5 ? 'lapicera' : 'paso');
+        if (c.eleccion?.fase === 'campania') { const cargo = c.eleccion.cargo!; const n = (['fuerte', 'normal', 'austera'] as const).find((x) => !motivoSinCampania(c, cargo, x)) ?? 'austera'; c = elegirCampania(c, n); }
+        if (c.eleccion) { const gano = c.eleccion.gano && c.eleccion.cargo === 'presidente'; c = cerrarEleccion(c); if (gano) { mandatos++; fuePresi = true; } }
+      }
+      if (c.evento) {
+        const e = buscarEvento(c.evento.id);
+        const pos = e.opciones.map((_, k) => k).filter((k) => !motivoOpcion(c, k));
+        const m = pos.reduce((a, k) => ((valorOpcion(c, e, k)?.total ?? -99) > (valorOpcion(c, e, a)?.total ?? -99) ? k : a), pos[0]);
+        c = resolverEvento(c, m).carrera;
+      }
+      if (c.detencion) { c = resolverDetencion(c, 'pelear'); if (c.fin) break; }
+      const r = CARGOS[c.cargo].rango;
+      const antes = c.medidores.caja; const sueldo = CARGOS[c.cargo].ingresoAnual; const est = gastoDeEstructura(c);
+      if (fuePresi && c.cargo !== 'presidente') despues.push({ edad: c.edad, imagen: c.medidores.imagen, fama: c.medidores.fama, poder: c.medidores.poder, cargo: c.cargo });
+      c = elegirCarta(c, s % 3);
+      const b = (porRango[r] ??= { sueldo: 0, estructura: 0, resto: 0, caja: [], n: 0 });
+      b.n++; b.sueldo += sueldo; b.estructura += est; b.resto += c.medidores.caja - antes - sueldo + est; b.caja.push(antes);
+    }
+    if (fuePresi) presis.push({ s, mandatos, despues: despues.slice(0, 6) });
+  }
+  const med = (xs: number[]) => [...xs].sort((a, b) => a - b)[Math.floor(xs.length / 2)];
+  const filas = Object.entries(porRango).map(([r, b]) => `rango ${r}: n=${b.n} sueldo ${Math.round(b.sueldo / b.n)} estructura ${Math.round(b.estructura / b.n)} otros ${Math.round(b.resto / b.n)} cajaMediana ${med(b.caja)} (= ${(med(b.caja) / (b.sueldo / b.n)).toFixed(1)} sueldos)`);
+  const tienda = ITEMS.map((i) => `${i.id} ${i.costo}`).join(', ');
+  const { writeFileSync } = await import('node:fs');
+  writeFileSync(env.ANALISIS, [...filas, '', `presidentes: ${presis.length}; mandatos: ${JSON.stringify(presis.map((p) => p.mandatos))}`, JSON.stringify(presis.slice(0, 4), null, 0), '', tienda].join('\n'));
+});

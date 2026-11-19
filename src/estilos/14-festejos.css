@@ -1,0 +1,344 @@
+/* Festejos: jura, etapa y balance */
+
+.capa.celebracion {
+  z-index: 25;
+  background: #050a12e6;
+  align-items: center;
+  overflow: hidden auto;
+}
+
+.tarjeta-celebracion {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 460px;
+  text-align: center;
+  background: var(--panel);
+  border: 1px solid var(--borde);
+  border-radius: 12px;
+  padding: 24px 20px;
+  animation: aparecer 0.5s cubic-bezier(0.2, 1.4, 0.4, 1);
+}
+
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.8) rotate(-2deg); }
+  to { opacity: 1; transform: none; }
+}
+
+.tarjeta-celebracion .boton {
+  margin-top: 18px;
+  min-width: 200px;
+}
+
+.titulo-celebracion {
+  font-size: clamp(1.6rem, 6vw, 2.2rem);
+  margin: 6px 0 10px;
+}
+
+.descripcion-cargo {
+  color: var(--suave);
+  font-size: 0.9rem;
+  margin: 6px 0;
+}
+
+.tarjeta-celebracion.jura {
+  border-top: 6px solid var(--color-partido);
+  box-shadow: 0 0 60px #75aadb33;
+}
+
+.jura .titulo-celebracion {
+  font-size: clamp(2.2rem, 9vw, 3.2rem);
+  letter-spacing: 0.02em;
+  background: linear-gradient(180deg, #fff 40%, var(--celeste));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: golpe 0.6s 0.2s cubic-bezier(0.2, 1.6, 0.4, 1) backwards;
+}
+
+@keyframes golpe {
+  from { transform: scale(2.2); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.cargo-jurado {
+  font-family: Georgia, serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.partido-jura {
+  color: var(--suave);
+  margin: 2px 0 8px;
+}
+
+.formula {
+  margin: 14px auto 6px;
+  font-family: Georgia, serif;
+  font-style: italic;
+  color: var(--suave);
+  font-size: 0.9rem;
+}
+
+.formula strong {
+  color: var(--texto);
+  font-style: normal;
+}
+
+.firma {
+  margin: 10px auto 4px;
+  width: 80%;
+  border-bottom: 1px solid var(--suave);
+  padding-bottom: 2px;
+}
+
+.firma span {
+  display: inline-block;
+  font-family: 'Segoe Script', 'Brush Script MT', 'Lucida Handwriting', cursive;
+  font-size: 1.6rem;
+  color: #dfe9ff;
+  white-space: nowrap;
+  clip-path: inset(0 100% 0 0);
+  animation: firmar 1.4s 0.8s ease-in-out forwards;
+}
+
+@keyframes firmar {
+  to { clip-path: inset(0 0 0 0); }
+}
+
+.ingreso-jura {
+  margin: 12px 0 0;
+}
+
+.ingreso-jura .chip {
+  font-size: 0.95rem;
+  padding: 5px 12px;
+}
+
+.confeti {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.confeti span {
+  position: absolute;
+  top: -20px;
+  width: 8px;
+  height: 14px;
+  border-radius: 2px;
+  opacity: 0.9;
+  animation-name: caer;
+  animation-timing-function: linear;
+  animation-iteration-count: 2;
+  animation-fill-mode: forwards;
+}
+
+@keyframes caer {
+  to { transform: translateY(110vh) rotate(var(--giro)); }
+}
+
+.medalla {
+  width: 110px;
+  height: 110px;
+  margin: 8px auto 4px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 35% 30%, #fff3c4, var(--sol) 45%, #a8781a);
+  box-shadow: 0 0 0 4px #f2b63255, 0 0 40px #f2b63266;
+  animation: girar-medalla 0.9s ease-out;
+}
+
+.medalla span {
+  font-family: Georgia, serif;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: #3a2a05;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+@keyframes girar-medalla {
+  from { transform: rotateY(180deg) scale(0.6); }
+  to { transform: none; }
+}
+
+.escalera-etapas {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+  flex-wrap: wrap;
+}
+
+.escalera-etapas li {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 4px 7px;
+  border-radius: 4px;
+  background: #0f1a28;
+  color: var(--suave);
+}
+
+.escalera-etapas li.hecha { color: var(--texto); }
+.escalera-etapas li.actual { background: var(--sol); color: #3a2a05; }
+
+.logros {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 8px;
+  margin: 8px 0 14px;
+  text-align: left;
+}
+
+.logro {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto auto;
+  column-gap: 8px;
+  align-items: center;
+  padding: 8px 10px;
+  background: #0f1a28;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  font-size: 0.82rem;
+  animation: entrar 0.4s ease-out backwards;
+}
+
+.logro:nth-child(2) { animation-delay: 0.08s; }
+.logro:nth-child(3) { animation-delay: 0.16s; }
+.logro:nth-child(4) { animation-delay: 0.24s; }
+.logro:nth-child(n + 5) { animation-delay: 0.32s; }
+
+.logro .icono {
+  grid-row: 1 / 3;
+  font-size: 1.4rem;
+}
+
+.logro small {
+  color: var(--suave);
+  font-size: 0.7rem;
+}
+
+.tabla-balance {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.tabla-balance th,
+.tabla-balance td {
+  padding: 6px 4px;
+  border-bottom: 1px solid var(--borde);
+  text-align: right;
+}
+
+.tabla-balance th:first-child {
+  text-align: left;
+  color: var(--suave);
+  font-weight: 600;
+}
+
+.tabla-balance thead th {
+  color: var(--suave);
+  font-weight: 600;
+  font-size: 0.75rem;
+}
+
+/* Final */
+
+.panel.armador {
+  border-color: var(--sol);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.panel.armador .sobretitulo {
+  margin: 0;
+}
+
+.panel.armador .ayuda {
+  margin: 0;
+}
+
+.panel.armador .boton {
+  margin-top: 6px;
+}
+
+.contador-titulo {
+  font-family: system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--suave);
+  margin-left: 6px;
+}
+
+.tabla-desplazable {
+  max-height: 420px;
+  overflow: auto;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+}
+
+.tabla-trayectoria {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.tabla-trayectoria th {
+  position: sticky;
+  top: 0;
+  background: #0f1a28;
+  color: var(--suave);
+  font-weight: 700;
+  text-align: left;
+  padding: 7px 8px;
+}
+
+.tabla-trayectoria td {
+  padding: 6px 8px;
+  border-top: 1px solid var(--borde);
+}
+
+.punto-partido {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  margin-right: 6px;
+  background: var(--color-partido);
+}
+
+.natal.padrino {
+  border-left: 4px solid var(--verde);
+}
+
+@media (max-width: 760px) {
+  .ofertas,
+  .tienda-items.grilla {
+    grid-template-columns: 1fr;
+  }
+  .tarjeta-celebracion {
+    padding: 20px 14px;
+  }
+}
+
+.estancado {
+  margin: 0 0 6px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--sol);
+}

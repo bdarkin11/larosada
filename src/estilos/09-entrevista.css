@@ -1,0 +1,294 @@
+/* Entrevista */
+
+.entrevista {
+  border-color: #ff5d5788;
+  animation: entrar 0.25s ease-out;
+}
+
+.entrevista-cabeza {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  font-size: 0.8rem;
+  color: var(--suave);
+}
+
+.en-vivo {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--rojo);
+  color: #fff;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.7rem;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.en-vivo::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #fff;
+  animation: titilar 1s steps(2, start) infinite;
+}
+
+@keyframes titilar {
+  to { visibility: hidden; }
+}
+
+.entrevista-cabeza .medio {
+  color: var(--texto);
+  font-weight: 700;
+}
+
+.entrevista-cabeza .contador {
+  margin-left: auto;
+}
+
+.reloj {
+  height: 6px;
+  margin: 12px 0 16px;
+  border-radius: 3px;
+  background: #0a121d;
+  overflow: hidden;
+}
+
+.reloj span {
+  display: block;
+  height: 100%;
+  background: linear-gradient(90deg, var(--rojo), var(--sol) 40%, var(--verde));
+  transform-origin: left;
+  animation: reloj linear forwards;
+}
+
+@keyframes reloj {
+  from { transform: scaleX(1); }
+  to { transform: scaleX(0); }
+}
+
+.pregunta {
+  font-family: Georgia, serif;
+  font-size: 1.3rem;
+  line-height: 1.3;
+  margin: 0 0 16px;
+  animation: entrar 0.3s ease-out;
+}
+
+.respuestas {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.respuesta {
+  font: inherit;
+  color: var(--texto);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  background: #0f1a28;
+  border: 1px solid var(--borde);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.respuesta:hover:not(:disabled) {
+  border-color: var(--celeste);
+}
+
+.respuesta .letra {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 800;
+  font-size: 0.8rem;
+  background: var(--borde);
+}
+
+.respuesta.elegida {
+  border-color: var(--celeste);
+  box-shadow: 0 0 0 2px var(--celeste);
+}
+
+.respuesta.elegida .letra {
+  background: var(--celeste);
+  color: #0b1a2b;
+}
+
+.respuesta:disabled:not(.elegida) {
+  opacity: 0.4;
+}
+
+.entrevista .pie {
+  margin: 12px 0 0;
+}
+
+.resultado-entrevista {
+  text-align: center;
+  animation: entrar 0.3s ease-out;
+}
+
+.resultado-entrevista.bueno { border-color: var(--verde); }
+.resultado-entrevista.malo { border-color: var(--rojo); }
+
+.resultado-entrevista h3 {
+  font-size: 1.35rem;
+}
+
+.resultado-chips {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0 16px;
+}
+
+.resultado-chips .chip {
+  font-size: 1rem;
+  padding: 5px 12px;
+  animation: entrar 0.4s 0.15s ease-out backwards;
+}
+
+.detalle-entrevista {
+  text-align: left;
+  list-style: none;
+  margin: 0 0 12px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detalle-entrevista li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 2px 10px;
+  padding: 10px 12px;
+  background: #0f1a28;
+  border-radius: 8px;
+  font-size: 0.85rem;
+}
+
+.detalle-entrevista .q {
+  color: var(--suave);
+  grid-column: 1;
+}
+
+.detalle-entrevista .a {
+  grid-column: 1;
+}
+
+.detalle-entrevista .puntos {
+  grid-column: 2;
+  grid-row: 1 / 3;
+  align-self: center;
+  font-weight: 800;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+}
+
+.puntos.bueno { color: var(--verde); }
+.puntos.malo { color: var(--rojo); }
+.puntos.neutro { color: var(--suave); }
+
+.resultado-entrevista .extra {
+  margin: 4px 0;
+}
+
+.resultado-entrevista .boton {
+  margin-top: 12px;
+}
+
+@media (max-width: 760px) {
+  .cabeza {
+    grid-template-columns: auto 1fr;
+  }
+  .lugar {
+    grid-column: 1 / -1;
+    text-align: left;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+  .poder {
+    width: 58px;
+    height: 58px;
+  }
+  .poder strong {
+    font-size: 1.7rem;
+  }
+  .fila-estadisticas {
+    gap: 6px;
+  }
+  .estadistica {
+    padding: 6px 7px;
+  }
+  .estadistica .valor {
+    font-size: 1.2rem;
+  }
+  .estadistica .etiqueta {
+    font-size: 0.56rem;
+    letter-spacing: 0.04em;
+  }
+  .fila-estadisticas.medidores {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .boton-barra {
+    flex: 1 1 28%;
+    padding: 8px 6px;
+    font-size: 0.7rem;
+  }
+  .pregunta {
+    font-size: 1.15rem;
+  }
+}
+
+/* Debate: reusa el panel de la entrevista */
+
+.debate-quien {
+  margin: 0 0 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--suave);
+}
+
+.debate-pista {
+  margin: 0 0 14px;
+  font-size: 0.9rem;
+  color: var(--sol);
+}
+
+.debate-reglas {
+  margin: 12px 0 18px;
+  padding-left: 20px;
+  line-height: 1.5;
+}
+
+.debate-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.debate-fuerza {
+  font-weight: 800;
+  margin-right: 8px;
+}
+
+.debate-fuerza.bueno {
+  color: var(--verde);
+}
+
+.debate-fuerza.malo {
+  color: var(--rojo);
+}

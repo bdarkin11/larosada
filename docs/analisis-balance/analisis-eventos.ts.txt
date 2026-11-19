@@ -1,0 +1,146 @@
+import { it } from 'vitest';
+import { writeFileSync } from 'node:fs';
+import { EVENTOS } from '../datos/eventos';
+import type { Resultado } from '../datos/eventos';
+import { DEF_GRUPOS } from '../datos/grupos';
+import { nuevaCarrera } from './carrera';
+import { preverResultado } from './eventos';
+import type { Prevision } from './eventos';
+import type { Carrera, GrupoId } from './tipos';
+
+/**
+ * VP = puntos de voto sumados en las próximas cinco elecciones (unos diez años).
+ * Cada peso sale de cómo el motor convierte ese número en fuerza electoral y de
+ * cuánto dura (la imagen vuelve un 15 % por año hacia 50; los grupos se enfrían un 8 %).
+ */
+const VP: Record<string, number> = {
+  imagen: 0.87, fama: 0.7, carisma: 1.0, territorio: 1.3, construccion: 1.4,
+  gestion: 0.6, rosca: 0.5, aguante: 0.4, causas: -0.5,
+};
+const vpGrupo = (g: GrupoId) => (g === 'justicia' ? 0.05 : DEF_GRUPOS[g].pesoElectoral * 0.037);
+
+const ETAPAS = [
+  { nombre: 'temprano (25)', edad: 25, cargo: 'militante' as const, caja: 27500, vpPorDolar: 0.002 * 0.35 },
+  { nombre: 'medio (45)', edad: 45, cargo: 'funcionario' as const, caja: 230000, vpPorDolar: 0.0005 * 0.15 },
+  { nombre: 'tarde (60)', edad: 60, cargo: 'legislador' as const, caja: 520000, vpPorDolar: 0.0002 * 0.1 },
+];
+
+function carreraEn(etapa: (typeof ETAPAS)[number]): Carrera {
+  const c = nuevaCarrera({ semilla: 3, provincia: 'Buenos Aires', estilo: 'pragmatico' });
+  Object.assign(c, { edad: etapa.edad, anio: 2027 + etapa.edad - 18, cargo: etapa.cargo, construccion: 50, mejorRango: 3 });
+  Object.assign(c.medidores, { caja: etapa.caja, fama: 30, causas: 35, imagen: 55 });
+  c.coimas = 0;
+  return c;
+}
+
+type Vector = Record<string, number>;
+
+function vector(p: Prevision): Vector {
+  const v: Vector = {};
+  for (const [k, x] of Object.entries(p.efectos)) v[k] = (v[k] ?? 0) + x!;
+  if (p.construccion) v.construccion = p.construccion;
+  for (const [g, x] of Object.entries(p.grupos)) v[`g:${g}`] = x!;
+  if (p.negra) v.negra = p.negra;
+  if (p.favor) v[p.favor.debes ? 'favorDebes' : 'favorTeDeben'] = 1;
+  if (p.saldaFavor) v.saldaFavor = 1;
+  if (p.proceso) v[`proceso:${p.proceso}`] = 1;
+  return v;
+}
+
+function valor(v: Vector, vpDolar: number, conPlata = true): number {
+  let t = 0;
+  for (const [k, x] of Object.entries(v)) {
+    if (k === 'caja') t += conPlata ? x * vpDolar : 0;
+    else if (k === 'negra') t += conPlata ? x * vpDolar * 0.7 : 0;
+    else if (k.startsWith('g:')) t += x * vpGrupo(k.slice(2) as GrupoId);
+    else if (k === 'favorTeDeben') t += 2 * x;
+    else if (k === 'favorDebes') t -= 2 * x;
+    else if (k === 'saldaFavor') t += 2 * x;
+    else if (k === 'proceso:retroceder') t += 8;
+    else if (k === 'proceso:archivar') t += 15;
+    else if (k === 'proceso:avanzar') t -= 8;
+    else if (k === 'proceso:detencion') t -= 40;
+    else t += x * (VP[k] ?? 0);
+  }
+  return t;
+}
+
+const sumar = (a: Vector, b: Vector, pa: number) => {
+  const r: Vector = {};
+  for (const k of new Set([...Object.keys(a), ...Object.keys(b)])) r[k] = (a[k] ?? 0) * pa + (b[k] ?? 0) * (1 - pa);
+  return r;
+};
+
+/** Cuánto "mejor" es más de una cosa: las causas, la deuda y el avance judicial van al revés. */
+const signo = (k: string) => (k === 'causas' || k === 'favorDebes' || k === 'proceso:avanzar' || k === 'proceso:detencion' ? -1 : 1);
+
+function domina(a: Vector, b: Vector): boolean {
+  let estricto = false;
+  for (const k of new Set([...Object.keys(a), ...Object.keys(b)])) {
+    const d = ((a[k] ?? 0) - (b[k] ?? 0)) * signo(k);
+    if (d < -1e-9) return false;
+    if (d > 1e-9) estricto = true;
+  }
+  return estricto;
+}
+
+const ceden = (v: Vector) => Object.entries(v).some(([k, x]) => x * signo(k) < -1e-9);
+const ganan = (v: Vector) => Object.entries(v).some(([k, x]) => x * signo(k) > 1e-9);
+
+it('análisis de valor de los eventos', () => {
+  const filas: string[] = [];
+  const resumen = { eventos: 0, opciones: 0, dominadas: 0, eventosConDominada: 0, sinCosto: 0, sinBeneficio: 0, dispersion: [] as number[], costoPlataEnCaja: [] as Record<string, number>[] };
+  const etapa = ETAPAS[1];
+  const c = carreraEn(etapa);
+  for (const e of EVENTOS) {
+    if ((e.peso ?? 1) <= 0 && !['cobro-favor', 'citacion-indagatoria', 'desafuero'].includes(e.id)) continue;
+    resumen.eventos++;
+    c.evento = { id: e.id, semillaRetrato: 1, grupo: e.grupo ?? 'sindicatos' };
+    const carpetazo = e.especial === 'carpetazo';
+    const ops = e.opciones.map((o) => {
+      let v: Vector;
+      let chance = 1;
+      if ('chance' in o.resultado) {
+        chance = o.resultado.chance(c);
+        v = sumar(vector(preverResultado(c, o.resultado.exito, c.evento!.grupo, carpetazo)), vector(preverResultado(c, o.resultado.fracaso, c.evento!.grupo, carpetazo)), chance);
+      } else {
+        v = vector(preverResultado(c, o.resultado as Resultado, c.evento!.grupo, carpetazo));
+      }
+      const valores = ETAPAS.map((et) => valor(v, et.vpPorDolar));
+      return { texto: o.texto, v, chance, valores, sinPlata: valor(v, 0, false), cede: ceden(v), gana: ganan(v) };
+    });
+    let hayDominada = false;
+    ops.forEach((o, i) => {
+      resumen.opciones++;
+      const dominadaPor = ops.find((p, j) => j !== i && domina(p.v, o.v));
+      if (dominadaPor) {
+        resumen.dominadas++;
+        hayDominada = true;
+      }
+      if (!o.cede) resumen.sinCosto++;
+      if (!o.gana) resumen.sinBeneficio++;
+      const plata = o.v.caja ?? 0;
+      if (plata < 0) resumen.costoPlataEnCaja.push(Object.fromEntries(ETAPAS.map((et) => [et.nombre, Math.round((-plata / et.caja) * 1000) / 10])));
+      filas.push(
+        `| ${e.id} | ${o.texto} | ${o.valores.map((x) => x.toFixed(1)).join(' / ')} | ${o.cede ? '' : 'NO CEDE'} ${dominadaPor ? `DOMINADA por «${dominadaPor.texto}»` : ''} |`,
+      );
+    });
+    if (hayDominada) resumen.eventosConDominada++;
+    const vals = ops.map((o) => o.sinPlata);
+    resumen.dispersion.push(Math.max(...vals) - Math.min(...vals));
+  }
+  const disp = [...resumen.dispersion].sort((a, b) => a - b);
+  const salida = {
+    eventos: resumen.eventos,
+    opciones: resumen.opciones,
+    opcionesDominadas: resumen.dominadas,
+    eventosConAlgunaDominada: resumen.eventosConDominada,
+    opcionesQueNoCedenNada: resumen.sinCosto,
+    opcionesQueNoGananNada: resumen.sinBeneficio,
+    dispersionVPMediana: disp[Math.floor(disp.length / 2)],
+    dispersionVPMaxima: disp.at(-1),
+    costosEnPlataComoPorcentajeDeCaja: resumen.costoPlataEnCaja,
+  };
+  writeFileSync('docs/_analisis-eventos.json', JSON.stringify(salida, null, 1));
+  writeFileSync('docs/_analisis-eventos-tabla.md', ['| Evento | Opción | VP temprano / medio / tarde | Problema |', '|---|---|---|---|', ...filas].join('\n'));
+});

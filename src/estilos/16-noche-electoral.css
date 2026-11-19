@@ -1,0 +1,481 @@
+/* La noche electoral */
+
+.noche-electoral {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.noche-cabeza {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.noche-cabeza strong {
+  font-family: Georgia, serif;
+  font-size: 1.15rem;
+  flex: 1;
+}
+
+.reloj-noche {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--sol);
+  background: #0a121d;
+  border: 1px solid var(--borde);
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-variant-numeric: tabular-nums;
+}
+
+.escena {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 90px 1fr;
+  align-items: end;
+  gap: 8px;
+  min-height: 250px;
+  padding: 16px 8px 8px;
+  background: radial-gradient(ellipse at 50% 120%, #1d3350, #0a121d 70%);
+  border: 1px solid var(--borde);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: opacity 0.4s;
+}
+
+.escena.oculta {
+  display: none;
+}
+
+.puesto-urna {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.urna {
+  position: relative;
+  width: 120px;
+  height: 100px;
+  border-radius: 4px 4px 8px 8px;
+  background: linear-gradient(180deg, #dfe9f5, #b9c9dc);
+  box-shadow: inset 0 -10px 0 #9fb2c9, 0 10px 24px #0008;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 2;
+}
+
+.urna .ranura {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  width: 54px;
+  height: 6px;
+  margin-left: -27px;
+  border-radius: 3px;
+  background: #1a2433;
+}
+
+.urna .faja {
+  width: 100%;
+  margin-bottom: 18px;
+  padding: 3px 0;
+  text-align: center;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: #0b1a2b;
+  background: linear-gradient(180deg, var(--celeste) 33%, #fff 33%, #fff 66%, var(--celeste) 66%);
+}
+
+.sobres-entrando {
+  position: absolute;
+  top: -70px;
+  left: 50%;
+  width: 0;
+  height: 0;
+  z-index: 1;
+}
+
+.sobre {
+  position: absolute;
+  width: 26px;
+  height: 17px;
+  border-radius: 2px;
+  background: #f3e6c4;
+  box-shadow: 0 2px 6px #0006;
+  overflow: hidden;
+}
+
+.sobre::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 10px;
+  background: linear-gradient(to bottom right, transparent 49%, #d8c79c 50%) left / 50% 100% no-repeat,
+    linear-gradient(to bottom left, transparent 49%, #d8c79c 50%) right / 50% 100% no-repeat;
+}
+
+.sobre.cae {
+  left: -13px;
+  opacity: 0;
+  animation-name: meter-sobre;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.8, 0.6);
+  animation-fill-mode: both;
+}
+
+@keyframes meter-sobre {
+  0% { opacity: 0; transform: translate(var(--desde-x), -40px) rotate(var(--giro)); }
+  15% { opacity: 1; }
+  70% { opacity: 1; transform: translate(0, 70px) rotate(0deg); }
+  100% { opacity: 0; transform: translate(0, 92px) rotate(0deg) scaleY(0.4); }
+}
+
+.leyenda-escena {
+  margin: 4px 0 0;
+  font-size: 0.8rem;
+  color: var(--suave);
+  text-align: center;
+}
+
+.contador-votantes {
+  margin: 0;
+  font-size: 0.8rem;
+  color: var(--suave);
+}
+
+.contador-votantes strong {
+  color: var(--texto);
+  font-variant-numeric: tabular-nums;
+}
+
+.cinta {
+  position: relative;
+  height: 100px;
+  align-self: center;
+  border-bottom: 2px dashed var(--borde);
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.transmitiendo .cinta {
+  opacity: 1;
+}
+
+.sobre.viaja {
+  bottom: 4px;
+  left: -60px;
+  opacity: 0;
+  animation-name: viajar;
+  animation-timing-function: linear;
+  animation-iteration-count: 2;
+  animation-fill-mode: both;
+}
+
+@keyframes viajar {
+  0% { opacity: 0; transform: translateX(0) translateY(-30px); }
+  15% { opacity: 1; transform: translateX(30px) translateY(0); }
+  85% { opacity: 1; transform: translateX(150px); }
+  100% { opacity: 0; transform: translateX(190px) scale(0.6); }
+}
+
+.computadora {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  opacity: 0.35;
+  transition: opacity 0.4s;
+}
+
+.transmitiendo .computadora {
+  opacity: 1;
+}
+
+.monitor {
+  width: 150px;
+  height: 104px;
+  padding: 7px;
+  background: #2a3442;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px #0008;
+}
+
+.pantalla {
+  height: 100%;
+  border-radius: 3px;
+  background: #031008;
+  color: #47e17f;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 0.56rem;
+  line-height: 1.35;
+  padding: 4px 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-shadow: inset 0 0 18px #47e17f22;
+}
+
+.pantalla .linea {
+  white-space: nowrap;
+  animation: entrar 0.2s ease-out;
+}
+
+.pantalla .linea.listo {
+  color: var(--sol);
+  font-weight: 700;
+  animation: titilar 0.6s steps(2, start) infinite;
+}
+
+.pantalla .cursor {
+  animation: titilar 1s steps(2, start) infinite;
+}
+
+.pie-monitor {
+  width: 50px;
+  height: 18px;
+  background: linear-gradient(180deg, #2a3442, #1b2330);
+  clip-path: polygon(30% 0, 70% 0, 100% 100%, 0 100%);
+}
+
+.transmision {
+  margin: 8px 0 0;
+  font-size: 0.78rem;
+  color: var(--suave);
+}
+
+.transmision strong {
+  color: var(--texto);
+  font-variant-numeric: tabular-nums;
+}
+
+.tablero-conteo {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  animation: entrar 0.4s ease-out;
+}
+
+.mesas {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-size: 0.8rem;
+  color: var(--suave);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.mesas strong {
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 1.3rem;
+  color: var(--sol);
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+
+.barra-mesas {
+  height: 6px;
+  background: #0a121d;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.barra-mesas span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--sol);
+}
+
+.filas-conteo {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.fila-conteo {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 2fr) auto;
+  grid-template-rows: auto auto;
+  column-gap: 12px;
+  align-items: center;
+  padding: 10px 12px;
+  background: #0f1a28;
+  border: 1px solid var(--borde);
+  border-left: 5px solid var(--color-partido);
+  border-radius: 8px;
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+
+.fila-conteo.lider {
+  box-shadow: 0 0 0 1px var(--color-partido), 0 0 18px #0006;
+}
+
+.fila-conteo.vos {
+  background: #12233a;
+}
+
+.fila-conteo .quien {
+  grid-row: 1 / 3;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.fila-conteo .quien strong {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.fila-conteo .quien em {
+  font-style: normal;
+  font-size: 0.65rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  background: var(--celeste);
+  color: #0b1a2b;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 4px;
+  vertical-align: middle;
+}
+
+.fila-conteo .quien small {
+  color: var(--suave);
+  font-size: 0.72rem;
+}
+
+.barra-voto {
+  height: 14px;
+  background: #0a121d;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.barra-voto span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--color-partido);
+  border-radius: 4px;
+}
+
+.fila-conteo .porcentaje {
+  font-family: Georgia, serif;
+  font-weight: 700;
+  font-size: 1.25rem;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  min-width: 78px;
+}
+
+.fila-conteo .votos {
+  grid-column: 2 / 4;
+  font-size: 0.72rem;
+  color: var(--suave);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.suspenso {
+  margin: 0;
+  text-align: center;
+  font-weight: 800;
+  color: var(--sol);
+  letter-spacing: 0.06em;
+  animation: titilar 0.8s steps(2, start) infinite;
+}
+
+.veredicto {
+  text-align: center;
+  padding: 10px 0 0;
+}
+
+.veredicto .sello {
+  display: inline-block;
+  font-family: Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(2rem, 9vw, 3rem);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 6px 22px;
+  border: 5px solid currentColor;
+  border-radius: 10px;
+  transform: rotate(-4deg);
+  animation: sellar 0.5s cubic-bezier(0.2, 1.6, 0.4, 1) both;
+}
+
+@keyframes sellar {
+  from { opacity: 0; transform: rotate(-4deg) scale(2.6); }
+  to { opacity: 1; transform: rotate(-4deg) scale(1); }
+}
+
+.veredicto.bueno .sello { color: var(--verde); box-shadow: 0 0 40px #3fcf7a55; }
+.veredicto.malo .sello { color: var(--rojo); }
+.veredicto.neutro .sello { color: var(--sol); }
+
+.veredicto p {
+  margin: 14px 0 0;
+  color: var(--suave);
+}
+
+.acciones-noche {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.acciones-noche [data-saltar] {
+  opacity: 0.6;
+}
+
+@media (max-width: 760px) {
+  .candidaturas {
+    grid-template-columns: 1fr;
+  }
+  .escena {
+    grid-template-columns: 1fr 40px 1fr;
+    min-height: 230px;
+  }
+  .urna {
+    width: 96px;
+    height: 84px;
+  }
+  .monitor {
+    width: 120px;
+    height: 90px;
+  }
+  @keyframes viajar {
+    0% { opacity: 0; transform: translateX(0) translateY(-30px); }
+    15% { opacity: 1; transform: translateX(20px) translateY(0); }
+    85% { opacity: 1; transform: translateX(90px); }
+    100% { opacity: 0; transform: translateX(120px) scale(0.6); }
+  }
+  .fila-conteo {
+    grid-template-columns: minmax(0, 1fr) auto;
+  }
+  .fila-conteo .quien {
+    grid-row: auto;
+  }
+  .barra-voto {
+    grid-column: 1 / 3;
+    grid-row: 2;
+    margin-top: 6px;
+  }
+  .fila-conteo .votos {
+    grid-column: 1 / 3;
+    grid-row: 3;
+  }
+}

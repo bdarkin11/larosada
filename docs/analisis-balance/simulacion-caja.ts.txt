@@ -1,0 +1,71 @@
+import { it } from 'vitest';
+import { writeFileSync } from 'node:fs';
+import { CARGOS } from '../datos/cargos';
+import { buscarEvento } from '../datos/eventos';
+import { descartarPendiente, elegirCarta, nuevaCarrera, resolverDetencion } from './carrera';
+import { candidaturas, cerrarEleccion, chanceLapicera, costoCampania, elegirCampania, elegirCandidatura, resolverInterna } from './elecciones';
+import { motivoOpcion, resolverEvento } from './eventos';
+import { decidirPase } from './pases';
+import type { Carrera } from './tipos';
+
+/** Un jugador "razonable": se presenta cuando tiene chance, hace campaña normal si puede, no agarra coimas. */
+function jugar(semilla: number) {
+  let c: Carrera = nuevaCarrera({ semilla });
+  const fotos: { edad: number; caja: number; ingreso: number; rango: number; fama: number; imagen: number; construccion: number }[] = [];
+  let costosEventos = 0;
+  let eventosConCosto = 0;
+  while (!c.fin) {
+    while (c.pendientes.length) c = descartarPendiente(c);
+    if (c.pases) c = decidirPase(c, 0);
+    if (c.eleccion) {
+      const ops = candidaturas(c).filter((x) => !x.motivo && x.chance >= 0.3).sort((a, b) => CARGOS[b.cargo].rango - CARGOS[a.cargo].rango);
+      c = elegirCandidatura(c, ops[0]?.cargo ?? null);
+      if (c.eleccion?.fase === 'interna') c = resolverInterna(c, chanceLapicera(c) > 0.5 ? 'lapicera' : 'paso');
+      if (c.eleccion?.fase === 'campania') {
+        const cargo = c.eleccion.cargo!;
+        c = elegirCampania(c, c.medidores.caja >= costoCampania(cargo, 'normal') ? 'normal' : 'austera');
+      }
+      if (c.eleccion) c = cerrarEleccion(c);
+    }
+    if (c.evento) {
+      const e = buscarEvento(c.evento.id);
+      const posibles = e.opciones.map((_, k) => k).filter((k) => !motivoOpcion(c, k));
+      const limpia = posibles.find((k) => { const r = e.opciones[k].resultado; return 'chance' in r ? true : !r.coima; }) ?? posibles[0];
+      const r = e.opciones[limpia].resultado;
+      const gasto = 'chance' in r ? 0 : -(r.efectos?.caja ?? 0);
+      if (gasto > 0) { costosEventos += gasto / Math.max(1, c.medidores.caja); eventosConCosto++; }
+      c = resolverEvento(c, limpia).carrera;
+    }
+    if (c.detencion) { c = resolverDetencion(c, 'pelear'); if (c.fin) break; }
+    fotos.push({ edad: c.edad, caja: c.medidores.caja, ingreso: CARGOS[c.cargo].ingresoAnual, rango: CARGOS[c.cargo].rango, fama: c.medidores.fama, imagen: c.medidores.imagen, construccion: c.construccion });
+    c = elegirCarta(c, semilla % 3);
+  }
+  return { fotos, costoRelativoMedio: eventosConCosto ? costosEventos / eventosConCosto : 0 };
+}
+
+const pct = (xs: number[], p: number) => { const s = [...xs].sort((a, b) => a - b); return s[Math.min(s.length - 1, Math.floor(p * s.length))]; };
+
+it('caja a lo largo de la carrera', { timeout: 300000 }, () => {
+  const porEdad: Record<number, { caja: number[]; ingreso: number[]; rango: number[]; fama: number[]; imagen: number[]; construccion: number[] }> = {};
+  const relativos: number[] = [];
+  const N = 300;
+  for (let s = 0; s < N; s++) {
+    const r = jugar(s);
+    relativos.push(r.costoRelativoMedio);
+    for (const f of r.fotos) {
+      if (f.edad % 5) continue;
+      porEdad[f.edad] ??= { caja: [], ingreso: [], rango: [], fama: [], imagen: [], construccion: [] };
+      const b = porEdad[f.edad];
+      b.caja.push(f.caja); b.ingreso.push(f.ingreso); b.rango.push(f.rango); b.fama.push(f.fama); b.imagen.push(f.imagen); b.construccion.push(f.construccion);
+    }
+  }
+  const filas = Object.entries(porEdad).filter(([, b]) => b.caja.length >= 30).map(([edad, b]) => ({
+    edad: Number(edad),
+    n: b.caja.length,
+    cajaP25: pct(b.caja, 0.25), cajaP50: pct(b.caja, 0.5), cajaP75: pct(b.caja, 0.75),
+    ingresoP50: pct(b.ingreso, 0.5),
+    rangoP50: pct(b.rango, 0.5),
+    famaP50: pct(b.fama, 0.5), imagenP50: pct(b.imagen, 0.5), construccionP50: pct(b.construccion, 0.5),
+  }));
+  writeFileSync('docs/_analisis-caja.json', JSON.stringify({ filas, costoRelativoMedioEventos: relativos.filter(Boolean).reduce((a, b) => a + b, 0) / relativos.filter(Boolean).length }, null, 1));
+});
